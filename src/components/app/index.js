@@ -63,8 +63,9 @@ class App extends Component {
 
   render = () => {
     const { filter } = this.state
-    const { books }= this.props
+    const { books, loading }= this.props
     const filteredBooks = books.filter(book => book.title.includes(filter))
+    console.log(`loading value: ${loading}`)
     return (
       <div className="app">
         <Search search={term => this.search(term)} />
@@ -77,7 +78,8 @@ App.defaultProps = {
   books : []
 }
 const mapStateToProps = state => ({
-  books: state.appReducer.books
+  books: state.appReducer.books,
+  loading:state.appReducer.loading
 })
 
 const mapDispatchToProps = dispatch => ({
